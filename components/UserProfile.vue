@@ -4,6 +4,7 @@ const shareData = {
   text: "Check out Shrinath Prabhu's profile!",
   url: "https://shrinath.me",
 };
+const isDMOpen = ref(false);
 
 async function shareProfile() {
   if (canShare()) {
@@ -62,10 +63,16 @@ function canShare() {
         <button
           class="flex items-center gap-1"
           title="Feel free to message me!"
+          @click.stop="isDMOpen = true"
         >
           <span>Message</span>
           <img src="~/assets/images/icons/chat.svg" class="btn-icon" />
         </button>
+        <Transition name="fade" mode="out-in">
+          <AppOverlay v-if="isDMOpen" @close="isDMOpen = false">
+            <UserDM />
+          </AppOverlay>
+        </Transition>
         <div class="flex gap-2 items-center flex-wrap">
           <NuxtLink
             :to="UserConstants.socials.twitter"
