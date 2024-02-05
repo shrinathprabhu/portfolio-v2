@@ -40,5 +40,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     dbConnUri: "",
+    public: {
+      outlineAnalyticsId: "",
+    },
   },
 });

@@ -5,6 +5,7 @@ const shareData = {
   url: "https://shrinath.me",
 };
 const isDMOpen = ref(false);
+const analytics = useAnalytics();
 
 async function shareProfile() {
   if (canShare()) {
@@ -22,6 +23,12 @@ function canShare() {
   if (process.client) {
     return navigator.canShare && navigator.canShare(shareData);
   }
+}
+
+function trackSocialClick(social: string) {
+  analytics.value?.sendEvent("social-click", {
+    social,
+  });
 }
 </script>
 
@@ -63,7 +70,10 @@ function canShare() {
         <button
           class="flex items-center gap-1"
           title="Feel free to message me!"
-          @click.stop="isDMOpen = true"
+          @click.stop="
+            isDMOpen = true;
+            trackSocialClick('message');
+          "
         >
           <span>Message</span>
           <img src="~/assets/images/icons/chat.svg" class="btn-icon" />
@@ -79,6 +89,7 @@ function canShare() {
             target="_blank"
             external
             title="Follow me on X, or feel free to DM me. I'm always happy to chat!"
+            @click.stop="trackSocialClick('x.com')"
           >
             <img
               src="~/assets/images/icons/twitter.svg"
@@ -90,6 +101,7 @@ function canShare() {
             target="_blank"
             external
             title="Let's connect on LinkedIn! We can discuss tech, life, or anything else you'd like!"
+            @click.stop="trackSocialClick('linkedin')"
           >
             <img
               src="~/assets/images/icons/linkedin.svg"
@@ -101,6 +113,7 @@ function canShare() {
             target="_blank"
             external
             title="Explore my work on GitHub—you might discover something useful!"
+            @click.stop="trackSocialClick('github')"
           >
             <img
               src="~/assets/images/icons/github.svg"
@@ -110,6 +123,7 @@ function canShare() {
           <NuxtLink
             :to="UserConstants.socials.mail"
             title="Feel free to drop me an email, and we can have a chat!"
+            @click.stop="trackSocialClick('mail')"
           >
             <img src="~/assets/images/icons/message.svg" />
           </NuxtLink>

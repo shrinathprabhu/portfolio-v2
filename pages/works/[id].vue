@@ -14,6 +14,7 @@ const likeClicked = ref(false);
 const selectedWork = computed(() => UserWorks[selectedWorkIndex.value]);
 const LikeStorageKey = `shrinath__work-${route.params.id}-is-liked`;
 const totalLikes = ref(0);
+const analytics = useAnalytics();
 
 definePageMeta({
   pageTransition: false,
@@ -68,9 +69,15 @@ const handleKeyEvents = (ev: KeyboardEvent) => {
     ev.key === "ArrowRight" &&
     selectedWorkIndex.value < totalWorksLength.value - 1
   ) {
+    analytics.value?.sendEvent("keyboard-arrow-click", {
+      key: "ArrowRight",
+    });
     nextWork();
   }
   if (ev.key === "ArrowLeft" && selectedWorkIndex.value > 0) {
+    analytics.value?.sendEvent("keyboard-arrow-click", {
+      key: "ArrowLeft",
+    });
     prevWork();
   }
 };
@@ -86,6 +93,9 @@ onBeforeUnmount(() => {
 async function handleLike() {
   likeClicked.value = true;
   isLiked.value = !isLiked.value;
+  analytics.value?.sendEvent("like-clicked", {
+    isLiked: isLiked.value ? 1 : 0,
+  });
   if (isLiked.value) {
     totalLikes.value += 1;
     new Audio("/sounds/like.mp3").play();
@@ -107,6 +117,10 @@ async function handleLike() {
     });
     localStorage.setItem(LikeStorageKey, isLiked.value.toString());
   }
+}
+
+function trackProfileClick() {
+  analytics.value?.sendEvent("profile-clicked");
 }
 </script>
 
@@ -142,6 +156,7 @@ async function handleLike() {
         <NuxtLink
           :to="{ name: 'index' }"
           class="h-10 flex gap-2 items-center rounded-md"
+          @click.stop="trackProfileClick"
         >
           <div class="relative z-10 h-8 aspect-square isolate">
             <div

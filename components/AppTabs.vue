@@ -2,6 +2,7 @@
 const emit = defineEmits(["change"]);
 const router = useRouter();
 const route = useRoute();
+const analytics = useAnalytics();
 
 const activeTab = ref(AppTabs.works);
 if (route.name === "index-blogs") {
@@ -12,6 +13,9 @@ if (route.name === "index-blogs") {
 function handleTabChange(tab: AppTabs) {
   if (activeTab.value !== tab) emit("change", { value: tab });
   activeTab.value = tab;
+  analytics.value?.sendEvent("tab-changed", {
+    tab: activeTab.value,
+  });
   if (tab === AppTabs.works) {
     router.push({ name: "index" });
   } else {

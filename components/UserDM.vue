@@ -6,6 +6,7 @@ const chatArea = ref<HTMLDivElement | null>(null);
 const input = ref("");
 const inputPresets = DirectMessage.presets;
 const isSubmitted = ref(false);
+const analytics = useAnalytics();
 
 type Message = {
   sent: boolean;
@@ -107,6 +108,7 @@ function pushMessage(message: string, sent = false, timeout = 1000) {
 
 async function handleMessageSend() {
   if (!input.value.trim()) return;
+  analytics.value?.sendEvent("message-interaction");
   const text = input.value;
   input.value = "";
   if (textArea.value) textArea.value.rows = 1;
