@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import isEmail from "validator/lib/isEmail";
+
 const textArea = ref<HTMLTextAreaElement | null>(null);
+const chatArea = ref<HTMLDivElement | null>(null);
 const input = ref("");
-const inputPresets = [
-  "Hello there! Nice to meet you, may I know your email address?",
-  "Perfect! Drop me a message and I'll get back to you as soon as possible.",
-  "You'll receive a reply via mail within 72 hours. Thank you for your patience!",
-];
+const inputPresets = DirectMessage.presets;
+const isSubmitted = ref(false);
 
 type Message = {
   sent: boolean;
@@ -37,47 +37,128 @@ function handleInput(ev: any) {
   }
 }
 
+function syncToLocalStorage() {
+  localStorage.setItem(
+    StorageKeys.chat.messages,
+    JSON.stringify(messages.value)
+  );
+}
+
+function getFromLocalStorage() {
+  const persistedMessages = localStorage.getItem(StorageKeys.chat.messages);
+  body.email = localStorage.getItem(StorageKeys.chat.email) || "";
+  isSubmitted.value =
+    localStorage.getItem(StorageKeys.chat.isSubmitted) === "true";
+  if (persistedMessages) {
+    messages.value = JSON.parse(persistedMessages);
+  }
+}
+
 onMounted(() => {
-  const currentLength = messages.value.length;
-  messages.value.push({
-    sent: false,
-    message: inputPresets[0],
-    loading: true,
-  });
-  setTimeout(() => {
-    messageReceivedAudio.play();
-    messages.value[currentLength].loading = false;
-  }, 1500);
+  getFromLocalStorage();
+  if (!isSubmitted.value) {
+    pushMessage(inputPresets[0], false, 1500);
+  } else {
+    const totalMessages = messages.value.length;
+    const lastMessage = messages.value[totalMessages - 1].message;
+    if (
+      lastMessage !== inputPresets[2] &&
+      lastMessage !== DirectMessage.errorMessages.ALREADY_SUBMITTED &&
+      lastMessage !== DirectMessage.errorMessages.ALREADY_REPLIED
+    ) {
+      const msg = DirectMessage.errorMessages.ALREADY_SUBMITTED;
+      pushMessage(msg, false, 1500);
+    }
+  }
+  if (process.client) {
+    setTimeout(() => {
+      if (chatArea.value)
+        chatArea.value.scrollTop = chatArea.value.scrollHeight;
+    }, 100);
+  }
 });
 
+function pushMessage(message: string, sent = false, timeout = 1000) {
+  const loading = !sent;
+  const currentLength = messages.value.length;
+  messages.value.push({
+    sent,
+    message,
+    loading,
+  });
+  if (process.client) {
+    syncToLocalStorage();
+  }
+  if (sent) {
+    setTimeout(() => {
+      messageSentAudio.play();
+    }, 250);
+  }
+  if (loading) {
+    setTimeout(() => {
+      messageReceivedAudio.play();
+      messages.value[currentLength].loading = false;
+      if (process.client) {
+        syncToLocalStorage();
+      }
+    }, timeout);
+  }
+}
+
 async function handleMessageSend() {
+  if (!input.value.trim()) return;
   const text = input.value;
   input.value = "";
+  if (textArea.value) textArea.value.rows = 1;
   if (!body.email) {
     handleEmailBody(text);
   } else {
     handleMessageBody(text);
+    const { error } = await useFetch(ApiEndpoints.message.url, {
+      method: ApiEndpoints.message.method,
+      body: {
+        email: body.email,
+        message: body.message,
+      },
+    });
+    if (error.value?.data) {
+      const errorData = JSON.parse(error.value.data);
+      let msg = "";
+      if (errorData.code === DirectMessage.errorCodes.INVALID_INPUT) {
+        msg = DirectMessage.errorMessages.INVALID_INPUT;
+      } else if (
+        errorData.code === DirectMessage.errorCodes.ALREADY_SUBMITTED
+      ) {
+        msg = DirectMessage.errorMessages.ALREADY_SUBMITTED;
+        isSubmitted.value = true;
+        localStorage.setItem(StorageKeys.chat.isSubmitted, "true");
+      } else if (errorData.code === DirectMessage.errorCodes.ALREADY_REPLIED) {
+        msg = DirectMessage.errorMessages.ALREADY_REPLIED;
+      } else {
+        msg = DirectMessage.errorMessages.GENERIC_ERROR;
+      }
+      pushMessage(msg, false);
+    } else {
+      pushMessage(inputPresets[2], false);
+    }
   }
 }
 
 function handleEmailBody(text: string) {
-  messages.value.push({
-    sent: true,
-    message: text,
-    loading: false,
-  });
-  body.email = text;
-  messageSentAudio.play();
+  pushMessage(text, true);
+  if (!isEmail(text)) {
+    const msg = DirectMessage.errorMessages.INVALID_EMAIL;
+    pushMessage(msg, false);
+  } else {
+    body.email = text;
+    localStorage.setItem(StorageKeys.chat.email, body.email);
+    pushMessage(inputPresets[1], false);
+  }
 }
 
 function handleMessageBody(text: string) {
-  messages.value.push({
-    sent: true,
-    message: text,
-    loading: false,
-  });
+  pushMessage(text, true);
   body.message = text;
-  messageSentAudio.play();
 }
 </script>
 
@@ -87,9 +168,10 @@ function handleMessageBody(text: string) {
       <h2 class="font-[500] text-[0.75rem]">Messages</h2>
       <div
         class="rounded flex-grow flex flex-col gap-2 border border-gray-300 border-solid overflow-y-auto p-2"
+        ref="chatArea"
       >
         <div
-          class="rounded-[1.5rem] px-4 py-2 w-max max-w-[70%] text-[0.875rem]"
+          class="rounded-[1.5rem] px-4 py-2 w-max max-w-[80%] text-[0.875rem]"
           v-for="message in messages"
           :key="message.message"
           :class="
