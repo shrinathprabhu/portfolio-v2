@@ -1,0 +1,24 @@
+.s__instagram-gradient {
+    background: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7);
+}
+
+.s__instagram-gradient-transition {
+    color: white;
+    background-image: linear-gradient(115deg, currentColor, currentColor, currentColor, #f9ce34, #ee2a7b, #6228d7);
+    background-size: 300%;
+    background-position: 0 center;
+    transition: background-position 0.2s ease-in-out;
+}
+
+.s__instagram-gradient-black {
+    color: black
+}
+
+.s__instagram-gradient-transition:where(:hover, :focus-visible) {
+    background-position: 100% center;
+}
+
+.s__text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,36 @@
+.fade-enter-active,
+.fade-leave-active,
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.2s ease-in;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-from {
+  scale: 0;
+}
+
+.fade-leave-to {
+  scale: 1.25
+}
+
+.slide-enter-from {
+  translate: -100% 0;
+}
+
+.slide-leave-to {
+  translate: 100% 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-enter-active,
+  .fade-leave-active,
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: all 0.02s ease-in;
+  }
+}
