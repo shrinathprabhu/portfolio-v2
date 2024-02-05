@@ -88,8 +88,14 @@ async function handleLike() {
   isLiked.value = !isLiked.value;
   if (isLiked.value) {
     totalLikes.value += 1;
+    new Audio("/sounds/like.mp3").play();
   } else {
-    totalLikes.value -= 1;
+    if (totalLikes.value < 1) {
+      totalLikes.value = 0;
+    } else {
+      totalLikes.value -= 1;
+    }
+    new Audio("/sounds/unlike.mp3").play();
   }
   if (process.client) {
     useFetch(ApiEndpoints.likes.post.url, {
