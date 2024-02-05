@@ -70,15 +70,15 @@ export default defineEventHandler(async (event) => {
       to: email,
       subject: "Your message has been received @ shrinath.me",
       text: `
-    Thank you for reaching out to me. This is an automated message to confirm that I have received your recent communication. I will respond as soon as possible.
+Thank you for reaching out to me. This is an automated message to confirm that I have received your recent communication. I will respond as soon as possible.
 
-    If you have any urgent concerns or require immediate assistance, please don't hesitate to contact us directly at ${config.smtpUser}.Thank you for your patience and understanding.
+If you have any urgent concerns or require immediate assistance, please don't hesitate to contact us directly at ${config.smtpUser}.Thank you for your patience and understanding.
 
-    Here's the copy of your message:
-    "${message}"
+Here's the copy of your message:
+"${message}"
 
-    Best Regards,
-    Shrinath Prabhu @ shrinath.me
+Best Regards,
+Shrinath Prabhu @ shrinath.me
     `,
     })
     .then((info: any) => console.log("Mail sent", info.messageId))
