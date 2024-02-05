@@ -10,24 +10,41 @@ const selectedWorkIndex = computed(() =>
 );
 const totalWorksLength = computed(() => UserWorks.length);
 const isLiked = ref(false);
+const likeClicked = ref(false);
 const selectedWork = computed(() => UserWorks[selectedWorkIndex.value]);
+const LikeStorageKey = `shrinath__work-${route.params.id}-is-liked`;
+const totalLikes = ref(0);
 
 definePageMeta({
   pageTransition: false,
   layoutTransition: false,
 });
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   if (selectedWorkIndex.value === -1) {
     throw createError({
       statusCode: 404,
       statusMessage: "Page Not Found",
     });
   }
+  const { data, pending } = await useFetch(ApiEndpoints.likes.get.url, {
+    query: { work: route.params.id },
+  });
+  const dataInterval = setInterval(() => {
+    if (!pending.value && data.value) {
+      const parsedData = JSON.parse(data.value as string);
+      totalLikes.value =
+        parsedData.likes && parsedData.likes > -1 ? parsedData.likes : 0;
+      clearInterval(dataInterval);
+    }
+  }, 50);
   if (process.client) {
-    const likeStatus = localStorage.getItem(`work-${route.params.id}-is-liked`);
+    const likeStatus = localStorage.getItem(LikeStorageKey);
     if (likeStatus === "true") {
       isLiked.value = true;
+      if (totalLikes.value <= 0) {
+        totalLikes.value = 1;
+      }
     }
   }
 });
@@ -67,12 +84,22 @@ onBeforeUnmount(() => {
 });
 
 async function handleLike() {
+  likeClicked.value = true;
   isLiked.value = !isLiked.value;
+  if (isLiked.value) {
+    totalLikes.value += 1;
+  } else {
+    totalLikes.value -= 1;
+  }
   if (process.client) {
-    localStorage.setItem(
-      `work-${route.params.id}-is-liked`,
-      isLiked.value.toString()
-    );
+    useFetch(ApiEndpoints.likes.post.url, {
+      method: "POST",
+      body: JSON.stringify({
+        work: route.params.id,
+        like: isLiked.value,
+      }),
+    });
+    localStorage.setItem(LikeStorageKey, isLiked.value.toString());
   }
 }
 </script>
@@ -191,16 +218,19 @@ async function handleLike() {
               :fill="isLiked ? '#ff3040' : 'none'"
               height="28"
               width="28"
-              :class="{ 'animate-interact': isLiked }"
+              :class="{
+                'animate-interact': isLiked,
+                'animate-shake': !isLiked && likeClicked,
+              }"
             />
           </button>
-          <span class="font-[500] text-[0.875rem]">0 likes</span>
+          <span class="font-[500] text-[0.875rem]">{{ totalLikes }} likes</span>
         </div>
       </div>
     </div>
     <div
       v-if="selectedWorkIndex > 0"
-      class="fixed left-4 top-0 bottom-0 w-8 flex flex-col justify-center items-center"
+      class="fixed left-4 top-0 bottom-0 w-8 flex flex-col justify-center items-center z-[100]"
     >
       <button
         class="bg-white rounded-full shadow border border-solid border-gray-200"
@@ -211,7 +241,7 @@ async function handleLike() {
     </div>
     <div
       v-if="selectedWorkIndex < totalWorksLength - 1"
-      class="fixed right-4 top-0 bottom-0 w-8 flex flex-col justify-center items-center"
+      class="fixed right-4 top-0 bottom-0 w-8 flex flex-col justify-center items-center z-[100]"
     >
       <button
         class="bg-white rounded-full shadow border border-solid border-gray-200"
@@ -228,6 +258,10 @@ async function handleLike() {
   animation: interact 0.2s ease-in-out;
 }
 
+.animate-shake {
+  animation: shake 0.2s ease-in-out;
+}
+
 @keyframes interact {
   0% {
     scale: 1;
@@ -240,6 +274,24 @@ async function handleLike() {
   100% {
     scale: 1;
     filter: none;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-0.25rem);
+  }
+  50% {
+    transform: translateX(0.25rem);
+  }
+  75% {
+    transform: translateX(-0.25rem);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 </style>
