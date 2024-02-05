@@ -40,6 +40,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     dbConnUri: "",
+    smtpUser: "",
+    smtpPass: "",
+    smtpHost: "",
+    smtpPort: "",
     public: {
       outlineAnalyticsId: "",
     },
