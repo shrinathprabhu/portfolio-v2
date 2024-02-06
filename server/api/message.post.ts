@@ -22,7 +22,12 @@ const MessageSchema = new Schema({
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const { message, email } = await readBody(event);
-  if (!message || !email || !validator.isEmail(email)) {
+  const lowercasedEmail = email?.toLowerCase();
+  if (
+    !message?.trim() ||
+    !lowercasedEmail?.trim() ||
+    !validator.isEmail(lowercasedEmail)
+  ) {
     return new Response(
       JSON.stringify({
         msg: "Invalid email or message provided. Please try again.",
@@ -34,7 +39,9 @@ export default defineEventHandler(async (event) => {
 
   const conn = await mongoose.connect(config.dbConnUri);
   const MessageModel = conn.model("Messages", MessageSchema);
-  const existingEntry = await MessageModel.findOne({ email }).exec();
+  const existingEntry = await MessageModel.findOne({
+    email: lowercasedEmail,
+  }).exec();
   if (existingEntry) {
     await conn.disconnect();
     if (existingEntry.replied) {
@@ -54,7 +61,7 @@ export default defineEventHandler(async (event) => {
       { status: 400 }
     );
   }
-  await new MessageModel({ email, message }).save();
+  await new MessageModel({ email: lowercasedEmail, message }).save();
   const mailer = nodemailer.createTransport({
     host: config.smtpHost,
     port: Number(config.smtpPort),

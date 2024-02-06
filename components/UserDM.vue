@@ -56,22 +56,28 @@ function getFromLocalStorage() {
 }
 
 onMounted(() => {
-  getFromLocalStorage();
-  if (!isSubmitted.value) {
-    pushMessage(inputPresets[0], false, 1500);
-  } else {
-    const totalMessages = messages.value.length;
-    const lastMessage = messages.value[totalMessages - 1].message;
-    if (
-      lastMessage !== inputPresets[2] &&
-      lastMessage !== DirectMessage.errorMessages.ALREADY_SUBMITTED &&
-      lastMessage !== DirectMessage.errorMessages.ALREADY_REPLIED
-    ) {
-      const msg = DirectMessage.errorMessages.ALREADY_SUBMITTED;
-      pushMessage(msg, false, 1500);
-    }
-  }
   if (process.client) {
+    getFromLocalStorage();
+    console.log(body.email, isSubmitted.value);
+    if (!isSubmitted.value) {
+      console.log(body.email);
+      if (!body.email) {
+        pushMessage(inputPresets[0], false, 1500);
+      } else {
+        pushMessage(DirectMessage.welcomeBack(body.email), false, 1500);
+      }
+    } else {
+      const totalMessages = messages.value.length;
+      const lastMessage = messages.value[totalMessages - 1].message;
+      if (
+        lastMessage !== inputPresets[2] &&
+        lastMessage !== DirectMessage.errorMessages.ALREADY_SUBMITTED &&
+        lastMessage !== DirectMessage.errorMessages.ALREADY_REPLIED
+      ) {
+        const msg = DirectMessage.errorMessages.ALREADY_SUBMITTED;
+        pushMessage(msg, false, 1500);
+      }
+    }
     setTimeout(() => {
       if (chatArea.value)
         chatArea.value.scrollTop = chatArea.value.scrollHeight;

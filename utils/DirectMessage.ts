@@ -2,7 +2,7 @@ export const DirectMessage = {
   presets: [
     "Hello there 👋! Nice to meet you 🤝, may I know your email address 💌?",
     "Perfect 👍! Drop me a message 💬 and I'll get back to you as soon as possible.",
-    "I received you message 🥳. You'll receive a reply via mail as soon as possible ⏳. Thank you for your patience 🫡!",
+    "I received your message 🥳. You'll receive a reply via mail as soon as possible ⏳. Thank you for your patience 🫡!",
   ],
   errorCodes: {
     INVALID_INPUT: "INVALID_INPUT",
@@ -19,4 +19,6 @@ export const DirectMessage = {
     INVALID_EMAIL:
       "Uh Oh! That email address looks incorrect 🙄😒. Please enter a correct email address 💌.",
   },
+  welcomeBack: (email: string) =>
+    `Welcome back ${email} 🤗! Drop me a message 💬 and I'll get back to you as soon as possible.`,
 };
