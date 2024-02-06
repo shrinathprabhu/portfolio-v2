@@ -1,4 +1,4 @@
-import isEmail from "validator/lib/isEmail";
+import validator from "validator";
 import mongoose, { Schema } from "mongoose";
 import { DirectMessage } from "~/utils/DirectMessage";
 import nodemailer from "nodemailer";
@@ -22,7 +22,7 @@ const MessageSchema = new Schema({
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const { message, email } = await readBody(event);
-  if (!message || !email || !isEmail(email)) {
+  if (!message || !email || !validator.isEmail(email)) {
     return new Response(
       JSON.stringify({
         msg: "Invalid email or message provided. Please try again.",

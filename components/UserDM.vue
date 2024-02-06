@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import isEmail from "validator/lib/isEmail";
+import isEmail from "validator/es/lib/isEmail";
 
 const textArea = ref<HTMLTextAreaElement | null>(null);
 const chatArea = ref<HTMLDivElement | null>(null);
