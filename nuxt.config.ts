@@ -8,6 +8,113 @@ export default defineNuxtConfig({
       name: "fade",
       mode: "out-in",
     },
+    head: {
+      htmlAttrs: {
+        lang: "en",
+      },
+      meta: [
+        {
+          name: "theme-color",
+          content: "#ffffff",
+        },
+        {
+          name: "msapplication-TileColor",
+          content: "#00aba9",
+        },
+        {
+          name: "msapplication-Config",
+          content: "/favicons/browserconfig.xml",
+        },
+        {
+          name: "title",
+          content:
+            "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+        },
+        {
+          name: "description",
+          content:
+            "Shrinath Prabhu is a Frontend Lead at Arcana (arcana.network) and the creator of Outline Analytics (useoutline.xyz).",
+        },
+        // Open Graph
+        {
+          property: "og:type",
+          content: "website",
+        },
+        {
+          property: "og:url",
+          content: "https://shrinath.me",
+        },
+        {
+          property: "og:title",
+          content:
+            "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+        },
+        {
+          property: "og:description",
+          content:
+            "Shrinath Prabhu is a Frontend Lead at Arcana (arcana.network) and the creator of Outline Analytics (useoutline.xyz).",
+        },
+        {
+          property: "og:image",
+          content: "/meta.png",
+        },
+        // Twitter
+        {
+          property: "twitter:card",
+          content: "summary_large_image",
+        },
+        {
+          property: "twitter:url",
+          content: "https://shrinath.me",
+        },
+        {
+          property: "twitter:title",
+          content:
+            "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+        },
+        {
+          property: "twitter:description",
+          content:
+            "Shrinath Prabhu is a Frontend Lead at Arcana (arcana.network) and the creator of Outline Analytics (useoutline.xyz).",
+        },
+        {
+          property: "twitter:image",
+          content: "/meta.png",
+        },
+      ],
+      link: [
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          href: "/favicons/apple-touch-icon.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: "/favicons/favicon-32x32.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "16x16",
+          href: "/favicons/favicon-16x16.png",
+        },
+        {
+          rel: "manifest",
+          href: "/favicons/site.webmanifest",
+        },
+        {
+          rel: "mask-icon",
+          href: "/favicons/safari-pinned-tab.svg",
+          color: "#4685ff",
+        },
+        {
+          rel: "shortcut icon",
+          href: "/favicons/favicon.ico",
+        },
+      ],
+    },
   },
   image: {
     formats: ["webp", "avif"],
