@@ -9,6 +9,8 @@ export default defineNuxtConfig({
       mode: "out-in",
     },
     head: {
+      title:
+        "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
       htmlAttrs: {
         lang: "en",
       },
