@@ -14,7 +14,10 @@
         Looks like you've reached a dead end in the digital universe.
       </p>
       <video autoplay loop preload="metadata" class="h-80 border-none">
-        <source src="/videos/gojo-rickroll.mp4" type="video/mp4" />
+        <source
+          src="https://shrinath.me/videos/gojo-rickroll.mp4"
+          type="video/mp4"
+        />
         Your browser does not support the video.
       </video>
       <NuxtLink
