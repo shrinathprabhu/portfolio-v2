@@ -5,7 +5,7 @@ useHead({
 </script>
 
 <template>
-  <main class="flex flex-col h-full">
+  <NuxtLayout>
     <NotFound />
-  </main>
+  </NuxtLayout>
 </template>
