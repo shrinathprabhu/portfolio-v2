@@ -15,7 +15,7 @@
       </p>
       <video autoplay loop preload="metadata" class="h-80 border-none">
         <source
-          src="https://shrinath.me/videos/gojo-rickroll.mp4"
+          src="https://shrinath.me/videos/gojo-rickroll-compressed.mp4"
           type="video/mp4"
         />
         Your browser does not support the video.
