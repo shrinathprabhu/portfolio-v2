@@ -4,10 +4,6 @@ export default defineNuxtConfig({
   modules: ["@nuxt/content", "@nuxt/image", "@nuxtjs/tailwindcss"],
   content: {},
   app: {
-    pageTransition: {
-      name: "fade",
-      mode: "out-in",
-    },
     head: {
       title:
         "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",

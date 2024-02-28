@@ -2,7 +2,7 @@
 .fade-leave-active,
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.2s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .fade-enter-from,
@@ -15,7 +15,7 @@
 }
 
 .fade-leave-to {
-  scale: 1.25
+  scale: 1.05;
 }
 
 .slide-enter-from {
