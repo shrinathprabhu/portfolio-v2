@@ -1,11 +1,4 @@
-type Analytics = {
-  start: () => void;
-  stop: () => void;
-  sendEvent: (
-    event: string,
-    data?: Record<string, string | number> | undefined
-  ) => void;
-  setData: (data: Record<string, string | number>) => void;
-} | null;
+import type { Analytics } from "@useoutline/analytics";
 
-export const useAnalytics = () => useState<Analytics>("analytics", () => null);
+export const useAnalytics = () =>
+  useState<Analytics | null>("analytics", () => null);

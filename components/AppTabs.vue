@@ -13,7 +13,7 @@ if (route.name === "index-blogs") {
 function handleTabChange(tab: AppTabs) {
   if (activeTab.value !== tab) emit("change", { value: tab });
   activeTab.value = tab;
-  analytics.value?.sendEvent("tab-changed", {
+  analytics.value?.sendEvent("tab change", {
     tab: activeTab.value,
   });
   if (tab === AppTabs.works) {

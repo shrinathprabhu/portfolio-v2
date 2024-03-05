@@ -69,13 +69,13 @@ const handleKeyEvents = (ev: KeyboardEvent) => {
     ev.key === "ArrowRight" &&
     selectedWorkIndex.value < totalWorksLength.value - 1
   ) {
-    analytics.value?.sendEvent("keyboard-arrow-click", {
+    analytics.value?.sendEvent("keyboard arrow click", {
       key: "ArrowRight",
     });
     nextWork();
   }
   if (ev.key === "ArrowLeft" && selectedWorkIndex.value > 0) {
-    analytics.value?.sendEvent("keyboard-arrow-click", {
+    analytics.value?.sendEvent("keyboard arrow click", {
       key: "ArrowLeft",
     });
     prevWork();
@@ -93,7 +93,7 @@ onBeforeUnmount(() => {
 async function handleLike() {
   likeClicked.value = true;
   isLiked.value = !isLiked.value;
-  analytics.value?.sendEvent("like-clicked", {
+  analytics.value?.sendEvent("like click", {
     isLiked: isLiked.value ? 1 : 0,
   });
   if (isLiked.value) {
@@ -120,7 +120,7 @@ async function handleLike() {
 }
 
 function trackProfileClick() {
-  analytics.value?.sendEvent("profile-clicked");
+  analytics.value?.sendEvent("profile click");
 }
 </script>
 

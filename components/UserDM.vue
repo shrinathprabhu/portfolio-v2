@@ -114,7 +114,7 @@ function pushMessage(message: string, sent = false, timeout = 1000) {
 
 async function handleMessageSend() {
   if (!input.value.trim()) return;
-  analytics.value?.sendEvent("message-interaction");
+  analytics.value?.sendEvent("message interaction");
   const text = input.value;
   input.value = "";
   if (textArea.value) textArea.value.rows = 1;

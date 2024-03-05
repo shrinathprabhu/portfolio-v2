@@ -26,7 +26,7 @@ function canShare() {
 }
 
 function trackSocialClick(social: string) {
-  analytics.value?.sendEvent("social-click", {
+  analytics.value?.sendEvent("social link click", {
     social,
   });
 }
