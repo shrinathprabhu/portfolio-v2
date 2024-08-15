@@ -26,6 +26,7 @@
       </video>
       <NuxtLink
         :to="{ name: 'index' }"
+        aria-label="Let's Fly Back Home!"
         class="font-medium s__instagram-gradient-transition s__instagram-gradient-black s__text-gradient"
         >Let's Fly Back Home!</NuxtLink
       >

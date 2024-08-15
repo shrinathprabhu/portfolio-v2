@@ -35,14 +35,20 @@ function handleTabChange(tab: AppTabs) {
       @click.stop="handleTabChange(AppTabs.works)"
     >
       <img
+        alt="works-icon"
         src="~/assets/images/icons/works.svg"
         class="w-[1rem]"
         v-if="activeTab === AppTabs.works"
       />
-      <img src="~/assets/images/icons/works-alt.svg" class="w-[1rem]" v-else />
+      <img
+        src="~/assets/images/icons/works-alt.svg"
+        alt="works-alt-icon"
+        class="w-[1rem]"
+        v-else
+      />
       <span
         class="text-[0.875rem] uppercase tracking-widest font-semibold transition-all"
-        :class="{ 'text-gray-400': activeTab !== AppTabs.works }"
+        :class="{ 'text-gray-600': activeTab !== AppTabs.works }"
         >Works</span
       >
     </button>
@@ -55,14 +61,20 @@ function handleTabChange(tab: AppTabs) {
       @click.stop="handleTabChange(AppTabs.blogs)"
     >
       <img
+        alt="book-open-icon"
         src="~/assets/images/icons/book-open.svg"
         class="w-[1rem]"
         v-if="activeTab === AppTabs.blogs"
       />
-      <img src="~/assets/images/icons/book-close.svg" class="w-[1rem]" v-else />
+      <img
+        alt="book-close-icon"
+        src="~/assets/images/icons/book-close.svg"
+        class="w-[1rem]"
+        v-else
+      />
       <span
         class="text-[0.875rem] uppercase tracking-widest font-semibold transition-all"
-        :class="{ 'text-gray-400': activeTab !== AppTabs.blogs }"
+        :class="{ 'text-gray-600': activeTab !== AppTabs.blogs }"
         >Blogs</span
       >
     </button>

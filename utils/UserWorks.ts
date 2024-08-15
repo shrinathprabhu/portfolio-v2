@@ -18,11 +18,11 @@ export const UserWorks = [
     website: "https://useoutline.xyz",
     media: [
       {
-        src: "/images/useoutline/1.jpeg",
+        src: "/images/useoutline/1.avif",
         type: "image",
       },
       {
-        src: "/images/useoutline/about.jpeg",
+        src: "/images/useoutline/about.avif",
         type: "image",
       },
     ],
@@ -46,11 +46,11 @@ export const UserWorks = [
     website: "https://arcana.network",
     media: [
       {
-        src: "/images/arcana/1.jpeg",
+        src: "/images/arcana/1.avif",
         type: "image",
       },
       {
-        src: "/images/arcana/about.jpeg",
+        src: "/images/arcana/about.avif",
         type: "image",
       },
     ],
@@ -69,11 +69,11 @@ export const UserWorks = [
     website: "https://sendit.arcana.network",
     media: [
       {
-        src: "/images/sendit/1.jpeg",
+        src: "/images/sendit/1.avif",
         type: "image",
       },
       {
-        src: "/images/sendit/about.jpeg",
+        src: "/images/sendit/about.avif",
         type: "image",
       },
     ],
@@ -100,11 +100,11 @@ export const UserWorks = [
     website: "https://hashbinary.com",
     media: [
       {
-        src: "/images/hashbinary/1.jpeg",
+        src: "/images/hashbinary/1.avif",
         type: "image",
       },
       {
-        src: "/images/hashbinary/clients.jpeg",
+        src: "/images/hashbinary/clients.avif",
         type: "image",
       },
     ],
@@ -126,7 +126,7 @@ export const UserWorks = [
     website: "https://agrostar.in",
     media: [
       {
-        src: "/images/agrostar/1.jpeg",
+        src: "/images/agrostar/1.avif",
         type: "image",
       },
     ],

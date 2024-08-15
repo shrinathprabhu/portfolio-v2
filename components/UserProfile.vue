@@ -41,6 +41,7 @@ function trackSocialClick(social: string) {
             class="relative rounded-full h-24 z-10 aspect-square overflow-hidden"
           >
             <img
+              alt="profile-picture"
               class="object-cover object-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
               :src="UserConstants.picture"
             />
@@ -57,13 +58,21 @@ function trackSocialClick(social: string) {
     <section class="flex flex-col">
       <h1 class="font-[700] text-[1.5rem] flex gap-2 items-center">
         <span>{{ UserConstants.name }}</span>
-        <img src="~/assets/images/icons/blue-tick.svg" class="h-[1.25rem]" />
+        <img
+          alt="verified-icon"
+          src="~/assets/images/icons/blue-tick.svg"
+          class="h-[1.25rem]"
+        />
       </h1>
       <p class="text-[1rem] text-gray-600 font-[300]">
         {{ UserConstants.bio }}
       </p>
-      <p class="text-[0.875rem] text-gray-500 flex items-center gap-[2px]">
-        <img src="~/assets/images/icons/location.svg" class="h-[1.25rem]" />
+      <p class="text-[0.875rem] text-gray-600 flex items-center gap-[2px]">
+        <img
+          alt="location-icon"
+          src="~/assets/images/icons/location.svg"
+          class="h-[1.25rem]"
+        />
         <span>{{ UserConstants.location }}</span>
       </p>
       <div class="flex gap-2 mt-3 flex-wrap">
@@ -76,7 +85,11 @@ function trackSocialClick(social: string) {
           "
         >
           <span>Message</span>
-          <img src="~/assets/images/icons/chat.svg" class="btn-icon" />
+          <img
+            alt="chat-icon"
+            src="~/assets/images/icons/chat.svg"
+            class="btn-icon"
+          />
         </button>
         <Transition name="fade" mode="out-in">
           <AppOverlay v-if="isDMOpen" @close="isDMOpen = false">
@@ -85,6 +98,7 @@ function trackSocialClick(social: string) {
         </Transition>
         <div class="flex gap-2 items-center flex-wrap">
           <NuxtLink
+            aria-label="Follow me on X, or feel free to DM me. I'm always happy to chat!"
             :to="UserConstants.socials.twitter"
             target="_blank"
             external
@@ -92,18 +106,21 @@ function trackSocialClick(social: string) {
             @click.stop="trackSocialClick('x.com')"
           >
             <img
+              alt="twitter-icon"
               src="~/assets/images/icons/twitter.svg"
               class="btn-icon-social"
             />
           </NuxtLink>
           <NuxtLink
             :to="UserConstants.socials.linkedin"
+            aria-label="Let's connect on LinkedIn! We can discuss tech, life, or anything else you'd like!"
             target="_blank"
             external
             title="Let's connect on LinkedIn! We can discuss tech, life, or anything else you'd like!"
             @click.stop="trackSocialClick('linkedin')"
           >
             <img
+              alt="linkedin-icon"
               src="~/assets/images/icons/linkedin.svg"
               class="btn-icon-social"
             />
@@ -111,21 +128,24 @@ function trackSocialClick(social: string) {
           <NuxtLink
             :to="UserConstants.socials.github"
             target="_blank"
+            aria-label="Explore my work on GitHub—you might discover something useful!"
             external
             title="Explore my work on GitHub—you might discover something useful!"
             @click.stop="trackSocialClick('github')"
           >
             <img
+              alt="github-icon"
               src="~/assets/images/icons/github.svg"
               class="btn-icon-social"
             />
           </NuxtLink>
           <NuxtLink
+            aria-label="Feel free to drop me an email, and we can have a chat!"
             :to="UserConstants.socials.mail"
             title="Feel free to drop me an email, and we can have a chat!"
             @click.stop="trackSocialClick('mail')"
           >
-            <img src="~/assets/images/icons/message.svg" />
+            <img alt="message-icon" src="~/assets/images/icons/message.svg" />
           </NuxtLink>
           <button
             v-if="canShare()"
@@ -133,6 +153,7 @@ function trackSocialClick(social: string) {
             title="Spread the digital love! Share my profile and let the virtual fireworks begin!"
           >
             <img
+              alt="send-icon"
               src="~/assets/images/icons/send.svg"
               class="btn-icon-social"
               style="padding: 0"

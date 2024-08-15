@@ -141,8 +141,7 @@ function trackProfileClick() {
             <NuxtImg
               :src="media.src"
               :alt="selectedWork.caption"
-              format="avif, webp"
-              densities="x1 x2"
+              format="avif"
               class="object-cover object-center h-full"
             />
           </Slide>
@@ -154,6 +153,7 @@ function trackProfileClick() {
       </div>
       <div class="flex-grow flex flex-col gap-2 h-full p-3 md:w-[45%]">
         <NuxtLink
+          aria-label="View profile"
           :to="{ name: 'index' }"
           class="h-10 flex gap-2 items-center rounded-md"
           @click.stop="trackProfileClick"
@@ -163,6 +163,7 @@ function trackProfileClick() {
               class="relative rounded-full h-8 z-10 aspect-square overflow-hidden"
             >
               <img
+                alt="profile-picture"
                 class="object-cover object-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 :src="UserConstants.picture"
               />
@@ -179,7 +180,11 @@ function trackProfileClick() {
               <h2 class="font-semibold text-[0.875rem] flex gap-2 items-center">
                 {{ UserConstants.username }}
               </h2>
-              <img src="~/assets/images/icons/blue-tick.svg" class="h-[1rem]" />
+              <img
+                alt="verified-icon"
+                src="~/assets/images/icons/blue-tick.svg"
+                class="h-[1rem]"
+              />
             </div>
             <span class="text-[0.75rem]">{{ selectedWork.title }}</span>
           </div>
@@ -195,6 +200,7 @@ function trackProfileClick() {
           <p class="text-[0.875rem]">
             <span class="font-[500]">Website: </span>
             <NuxtLink
+              aria-label="View website"
               :to="selectedWork.website"
               external
               target="_blank"
@@ -221,7 +227,7 @@ function trackProfileClick() {
               </li>
             </ol>
           </div>
-          <span class="mt-auto text-gray-500 font-[300] text-[0.75rem]">
+          <span class="mt-auto text-gray-600 font-[300] text-[0.75rem]">
             <span v-if="!selectedWork.date_ended">Since </span
             ><span>{{ selectedWork.date_started }}</span
             ><span v-if="selectedWork.date_ended">
@@ -257,7 +263,11 @@ function trackProfileClick() {
         class="bg-white rounded-full shadow border border-solid border-gray-200"
         @click.stop="prevWork"
       >
-        <img src="~/assets/images/icons/arrow-left.svg" class="w-8" />
+        <img
+          alt="arrow-left-icon"
+          src="~/assets/images/icons/arrow-left.svg"
+          class="w-8"
+        />
       </button>
     </div>
     <div
@@ -268,7 +278,11 @@ function trackProfileClick() {
         class="bg-white rounded-full shadow border border-solid border-gray-200"
         @click.stop="nextWork"
       >
-        <img src="~/assets/images/icons/arrow-right.svg" class="w-8" />
+        <img
+          alt="arrow-right-icon"
+          src="~/assets/images/icons/arrow-right.svg"
+          class="w-8"
+        />
       </button>
     </div>
   </div>

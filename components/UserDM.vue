@@ -204,7 +204,11 @@ function handleMessageBody(text: string) {
         class="rounded-full bg-blue-500 text-white p-1 s__instagram-gradient s__instagram-gradient-transition s__instagram-gradient-black"
         title="Send"
       >
-        <img src="~/assets/images/icons/send-white.svg" class="h-7" />
+        <img
+          alt="send-white-icon"
+          src="~/assets/images/icons/send-white.svg"
+          class="h-7"
+        />
       </button>
     </form>
   </div>

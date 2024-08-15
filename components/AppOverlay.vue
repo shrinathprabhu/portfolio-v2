@@ -16,7 +16,11 @@ const emit = defineEmits(["close"]);
         @click.stop="emit('close')"
         title="Close"
       >
-        <img src="~/assets/images/icons/cross.svg" class="w-5 h-5" />
+        <img
+          alt="close-icon"
+          src="~/assets/images/icons/cross.svg"
+          class="w-5 h-5"
+        />
       </button>
       <slot></slot>
     </div>

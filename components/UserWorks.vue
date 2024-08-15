@@ -6,13 +6,14 @@
       class="relative bg-black aspect-square rounded-md cursor-pointer overflow-hidden border border-solid border-gray-200"
     >
       <NuxtLink
+        :aria-label="`View work at ${work.title}`"
         class="absolute inset-0 flex items-center justify-center"
         :to="{ name: 'works-id', params: { id: work.id } }"
       >
         <NuxtImg
           :src="work.media[0].src"
-          format="avif, webp"
-          densities="x1 x2"
+          format="avif"
+          :alt="work.title"
           class="object-cover object-center w-full"
         />
       </NuxtLink>
@@ -21,6 +22,7 @@
         class="absolute top-0 right-0 p-2 opacity-90"
       >
         <img
+          alt="carousel-icon"
           src="~/assets/images/icons/carousel.svg"
           class="w-6 h-6"
           style="

@@ -8,7 +8,6 @@ export const UserConstants = {
     twitter: "https://twitter.com/shrinath_prabhu",
     linkedin: "https://linkedin.com/in/shrinath-prabhu",
   },
-  picture:
-    "https://w0.peakpx.com/wallpaper/973/183/HD-wallpaper-anime-face-hide-anime-gentleman-men.jpg",
+  picture: "/pfp.avif",
   location: "Dombivli, India 🇮🇳",
 };
