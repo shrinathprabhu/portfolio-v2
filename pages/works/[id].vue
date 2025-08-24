@@ -220,6 +220,7 @@ function trackProfileClick() {
               external
               target="_blank"
               class="text-[#3897f0]"
+              style="line-break: anywhere"
               >{{ selectedWork.website }}</NuxtLink
             >
           </p>
