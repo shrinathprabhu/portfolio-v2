@@ -1,7 +1,7 @@
 export const UserConstants = {
   name: "Shrinath Prabhu",
   username: "shrinathprabhu",
-  bio: "Web Developer | Frontend Lead @ Arcana | Building @useoutline",
+  bio: "Web Developer | Frontend Engineer @ Avail | Building @useoutline",
   socials: {
     mail: "mailto:hello@shrinath.me",
     github: "https://github.com/shrinathprabhu",

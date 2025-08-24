@@ -1,4 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+const title =
+  "Shrinath Prabhu - Frontend Engineer @ Avail | Building Outline Analytics";
+const description =
+  "Shrinath Prabhu is a Frontend Engineer at Avail (https://availproject.org) and the creator of Outline Analytics (https://useoutline.xyz).";
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxt/image", "@nuxtjs/tailwindcss"],
@@ -6,7 +12,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title:
-        "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+        "Shrinath Prabhu - Frontend Engineer @ Avail | Building Outline Analytics",
       htmlAttrs: {
         lang: "en",
       },
@@ -25,13 +31,11 @@ export default defineNuxtConfig({
         },
         {
           name: "title",
-          content:
-            "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+          content: title,
         },
         {
           name: "description",
-          content:
-            "Shrinath Prabhu is a Frontend Lead at Arcana (arcana.network) and the creator of Outline Analytics (useoutline.xyz).",
+          content: description,
         },
         // Open Graph
         {
@@ -44,13 +48,11 @@ export default defineNuxtConfig({
         },
         {
           property: "og:title",
-          content:
-            "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+          content: title,
         },
         {
           property: "og:description",
-          content:
-            "Shrinath Prabhu is a Frontend Lead at Arcana (arcana.network) and the creator of Outline Analytics (useoutline.xyz).",
+          content: description,
         },
         {
           property: "og:image",
@@ -67,13 +69,11 @@ export default defineNuxtConfig({
         },
         {
           property: "twitter:title",
-          content:
-            "Shrinath Prabhu - Frontend Lead @ Arcana | Building Outline Analytics",
+          content: title,
         },
         {
           property: "twitter:description",
-          content:
-            "Shrinath Prabhu is a Frontend Lead at Arcana (arcana.network) and the creator of Outline Analytics (useoutline.xyz).",
+          content: description,
         },
         {
           property: "twitter:image",
@@ -84,19 +84,19 @@ export default defineNuxtConfig({
         {
           rel: "apple-touch-icon",
           sizes: "180x180",
-          href: "/favicons/apple-touch-icon.png",
+          href: "/pfp.avif",
         },
         {
           rel: "icon",
           type: "image/png",
           sizes: "32x32",
-          href: "/favicons/favicon-32x32.png",
+          href: "/pfp.avif",
         },
         {
           rel: "icon",
           type: "image/png",
           sizes: "16x16",
-          href: "/favicons/favicon-16x16.png",
+          href: "/pfp.avif",
         },
         {
           rel: "manifest",
@@ -104,12 +104,12 @@ export default defineNuxtConfig({
         },
         {
           rel: "mask-icon",
-          href: "/favicons/safari-pinned-tab.svg",
+          href: "/pfp.avif",
           color: "#4685ff",
         },
         {
           rel: "shortcut icon",
-          href: "/favicons/favicon.ico",
+          href: "/pfp.avif",
         },
       ],
     },
@@ -125,7 +125,7 @@ export default defineNuxtConfig({
       xxl: 1536,
       "2xl": 1536,
     },
-    provider: "netlify",
+    provider: "vercel",
   },
   css: [
     "~/assets/css/reset.css",

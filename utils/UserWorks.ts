@@ -1,28 +1,43 @@
 export const UserWorks = [
   {
     id: "useoutline",
-    title: "UseOutline",
+    title: "Outline Analytics",
     caption:
-      "Side Hustle | Full Stack Developer | Building analytics tool for the web.",
+      "Side Hustle | Part Time CEO | Building analytics tool for the web.",
     designations: [
       {
-        title: "Founder",
-        date_started: "January, 2024",
-      },
-      {
-        title: "Fullstack Developer",
-        date_started: "January, 2024",
+        title: "Part Time CEO",
+        date_started: "January, 2025",
+        date_ended: "",
       },
     ],
-    date_started: "January, 2024",
+    date_started: "January, 2025",
+    date_ended: "",
     website: "https://useoutline.xyz",
     media: [
       {
         src: "/images/useoutline/1.avif",
         type: "image",
       },
+    ],
+  },
+  {
+    id: "avail",
+    title: "Avail Project",
+    caption: "Frontend Engineer | Building Nexus",
+    designations: [
       {
-        src: "/images/useoutline/about.avif",
+        title: "Frontend Engineer",
+        date_started: "August, 2025",
+        date_ended: "",
+      },
+    ],
+    date_started: "August, 2025",
+    date_ended: "",
+    website: "https://availproject.org",
+    media: [
+      {
+        src: "/images/avail/1.avif",
         type: "image",
       },
     ],
@@ -30,27 +45,26 @@ export const UserWorks = [
   {
     id: "arcana",
     title: "Arcana Network",
-    caption: "Lead Frontend Developer | Supercharge your Web3 UX with Arcana.",
+    caption:
+      "Lead Frontend Engineer | Supercharge your Web3 UX | Built frontends for SendIt, Chain Abstraction Wallet and Dashboards",
     designations: [
       {
-        title: "Lead Frontend Developer",
+        title: "Lead Frontend Engineer",
         date_started: "November, 2023",
+        date_ended: "July, 2025",
       },
       {
-        title: "Frontend Developer",
+        title: "Frontend Engineer",
         date_started: "January, 2021",
         date_ended: "October, 2023",
       },
     ],
     date_started: "January, 2021",
+    date_ended: "July, 2025",
     website: "https://arcana.network",
     media: [
       {
         src: "/images/arcana/1.avif",
-        type: "image",
-      },
-      {
-        src: "/images/arcana/about.avif",
         type: "image",
       },
     ],
@@ -58,14 +72,17 @@ export const UserWorks = [
   {
     id: "sendit",
     title: "Sendit by Arcana Network",
-    caption: "Lead Frontend Developer | Send Crypto Over Email.",
+    caption:
+      "Lead Frontend Engineer | Send Crypto Over Email | Build the frontend and provided smooth UX for web3",
     designations: [
       {
-        title: "Lead Frontend Developer",
+        title: "Lead Frontend Engineer",
         date_started: "July, 2023",
+        date_ended: "July, 2024",
       },
     ],
     date_started: "July, 2023",
+    date_ended: "July, 2024",
     website: "https://sendit.arcana.network",
     media: [
       {
@@ -80,17 +97,17 @@ export const UserWorks = [
   },
   {
     id: "hashbinary",
-    title: "Hashbinary",
+    title: "Hashbinary Services",
     caption:
-      "Fullstack Web Developer | Worked on different products for various clients.",
+      "Fullstack Engineer | Built Pricinger, QBuild, GoTappit and various client projects",
     designations: [
       {
-        title: "Fullstack Developer",
+        title: "Fullstack Engineer",
         date_started: "May, 2019",
         date_ended: "January, 2021",
       },
       {
-        title: "Fullstack Developer Intern",
+        title: "Fullstack Engineer Intern",
         date_started: "May, 2018",
         date_ended: "April, 2019",
       },
@@ -103,20 +120,16 @@ export const UserWorks = [
         src: "/images/hashbinary/1.avif",
         type: "image",
       },
-      {
-        src: "/images/hashbinary/clients.avif",
-        type: "image",
-      },
     ],
   },
   {
     id: "agrostar",
     title: "Agrostar",
     caption:
-      "Backend Developer (as a consultant from Hashbinary) | Helping farmers win.",
+      "Fullstack Engineer | Built initial version of Saathi App, worked as a part of Hashbinary's outsourced employee",
     designations: [
       {
-        title: "Backend Developer",
+        title: "Fullstack Engineer",
         date_started: "October, 2020",
         date_ended: "February, 2021",
       },
