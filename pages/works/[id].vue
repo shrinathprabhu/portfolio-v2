@@ -137,13 +137,28 @@ function trackProfileClick() {
             v-for="media in selectedWork.media"
             :key="media.src"
             class="h-full w-full"
+            :style="media.styles ? media.styles : {}"
           >
             <NuxtImg
+              v-if="media.type === 'image'"
               :src="media.src"
               :alt="selectedWork.caption"
               format="avif"
               class="object-cover object-center h-full"
+              style="pointer-events: none"
+              :style="media.styles ? media.styles : {}"
             />
+            <video
+              v-else
+              autoplay
+              playsinline
+              loop
+              muted
+              style="pointer-events: none"
+              :style="media.styles ? media.styles : {}"
+            >
+              <source :src="media.src" type="video/mp4" />
+            </video>
           </Slide>
           <template #addons>
             <Navigation />

@@ -9,13 +9,28 @@
         :aria-label="`View work at ${work.title}`"
         class="absolute inset-0 flex items-center justify-center"
         :to="{ name: 'works-id', params: { id: work.id } }"
+        :style="work.media[0].styles ? work.media[0].styles : {}"
       >
         <NuxtImg
+          v-if="work.media[0].type === 'image'"
           :src="work.media[0].src"
           format="avif"
           :alt="work.title"
+          style="pointer-events: none"
+          :style="work.media[0].styles ? work.media[0].styles : {}"
           class="object-cover object-center w-full"
         />
+        <video
+          v-else
+          autoplay
+          playsinline
+          loop
+          muted
+          style="pointer-events: none"
+          :style="work.media[0].styles ? work.media[0].styles : {}"
+        >
+          <source :src="work.media[0].src" type="video/mp4" />
+        </video>
       </NuxtLink>
       <div
         v-if="work.media.length > 1"

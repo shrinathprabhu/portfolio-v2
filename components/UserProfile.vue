@@ -33,7 +33,7 @@ function trackSocialClick(social: string) {
 </script>
 
 <template>
-  <div class="flex gap-6 mt-4 s__flex-wrap">
+  <div class="flex gap-6 mt-4 s__flex-wrap justify-center sm:justify-normal">
     <section>
       <div class="h-28 flex items-center">
         <div class="relative z-10 h-24 aspect-square isolate">

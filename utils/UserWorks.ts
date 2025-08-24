@@ -8,16 +8,15 @@ export const UserWorks = [
       {
         title: "Part Time CEO",
         date_started: "January, 2025",
-        date_ended: "",
       },
     ],
     date_started: "January, 2025",
-    date_ended: "",
     website: "https://useoutline.xyz",
     media: [
       {
         src: "/images/useoutline/1.avif",
         type: "image",
+        styles: { background: "#FFFFFF" },
       },
     ],
   },
@@ -29,16 +28,20 @@ export const UserWorks = [
       {
         title: "Frontend Engineer",
         date_started: "August, 2025",
-        date_ended: "",
       },
     ],
     date_started: "August, 2025",
-    date_ended: "",
     website: "https://availproject.org",
     media: [
       {
         src: "/images/avail/1.avif",
         type: "image",
+        styles: { background: "#E9F2FD" },
+      },
+      {
+        src: "/images/avail/2.avif",
+        type: "image",
+        styles: { background: "#E9F2FD" },
       },
     ],
   },
@@ -46,7 +49,7 @@ export const UserWorks = [
     id: "arcana",
     title: "Arcana Network",
     caption:
-      "Lead Frontend Engineer | Supercharge your Web3 UX | Built frontends for SendIt, Chain Abstraction Wallet and Dashboards",
+      "Lead Frontend Engineer | Supercharge your Web3 UX | Built frontends for Chain Abstraction Wallet, SendIt,  Skizzle and Dashboards",
     designations: [
       {
         title: "Lead Frontend Engineer",
@@ -66,6 +69,12 @@ export const UserWorks = [
       {
         src: "/images/arcana/1.avif",
         type: "image",
+        styles: { background: "#FF4E9F" },
+      },
+      {
+        src: "/images/arcana/2.avif",
+        type: "image",
+        styles: { background: "#FF4E9F" },
       },
     ],
   },
@@ -73,7 +82,7 @@ export const UserWorks = [
     id: "sendit",
     title: "Sendit by Arcana Network",
     caption:
-      "Lead Frontend Engineer | Send Crypto Over Email | Build the frontend and provided smooth UX for web3",
+      "Lead Frontend Engineer | Send Crypto Over Email | Built the frontend and provided smooth UX for web3",
     designations: [
       {
         title: "Lead Frontend Engineer",
@@ -88,10 +97,35 @@ export const UserWorks = [
       {
         src: "/images/sendit/1.avif",
         type: "image",
+        styles: { background: "#1E1E1E" },
       },
       {
         src: "/images/sendit/about.avif",
         type: "image",
+        styles: { background: "#1E1E1E" },
+      },
+    ],
+  },
+  {
+    id: "skizzle",
+    title: "Skizzle by Arcana Network",
+    caption:
+      "Frontend Engineer | End-to-end encrypted attachments in Gmail | Built the extension",
+    designations: [
+      {
+        title: "Frontend Engineer",
+        date_started: "January, 2021",
+        date_ended: "July, 2021",
+      },
+    ],
+    date_started: "January, 2021",
+    date_ended: "July, 2021",
+    website: "https://www.producthunt.com/products/skizzle",
+    media: [
+      {
+        src: "/images/skizzle/1.mp4",
+        type: "video",
+        styles: { background: "#000000" },
       },
     ],
   },
@@ -119,6 +153,7 @@ export const UserWorks = [
       {
         src: "/images/hashbinary/1.avif",
         type: "image",
+        styles: { background: "#FFFFFF" },
       },
     ],
   },
@@ -141,7 +176,27 @@ export const UserWorks = [
       {
         src: "/images/agrostar/1.avif",
         type: "image",
+        styles: { background: "#9B1F24" },
       },
     ],
   },
-];
+] as {
+  id: string;
+  title: string;
+  caption: string;
+  designations: {
+    title: string;
+    date_started: string;
+    date_ended?: string;
+  }[];
+  date_started: string;
+  date_ended?: string;
+  website: string;
+  media: [
+    {
+      src: string;
+      type: "image" | "video";
+      styles?: { background?: string };
+    }
+  ];
+}[];

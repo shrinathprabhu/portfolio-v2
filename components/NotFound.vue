@@ -16,7 +16,8 @@
       <video
         autoplay
         controls
-        muted
+        playsinline
+        loop
         name="gojo-rickroll"
         ref="video"
         class="h-80 border-none"
